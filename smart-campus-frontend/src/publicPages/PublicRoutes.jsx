@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import Library from '../features/Library';
+import Library from '../features/library/Library';
 import Finance from '../features/Finance';
 import Academics from '../features/Academics';
 import ItLab from '../features/ItLab';

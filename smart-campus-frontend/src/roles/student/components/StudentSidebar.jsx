@@ -1,109 +1,157 @@
-import React from 'react';
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Collapse } from '@mui/material';
-import { ExpandLess, ExpandMore } from '@mui/icons-material';
+// src/roles/student/components/StudentSidebar.jsx
+import React, { useState, useEffect } from 'react';
+import {
+  Drawer, List, ListItemButton, ListItemText, Collapse, ListItemIcon, Typography, Box, Divider
+} from '@mui/material';
+import {
+  ExpandLess, ExpandMore, School, MenuBook, Schedule, Grade, Assignment,
+  LocalLibrary, Restaurant, HealthAndSafety, SportsSoccer,
+  AccountBalanceWallet, Message, Store, People, Settings, ColorLens, TextFields, Logout
+} from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import SchoolIcon from '@mui/icons-material/School';
-import ComputerIcon from '@mui/icons-material/Computer';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import PeopleIcon from '@mui/icons-material/People';
-import SettingsIcon from '@mui/icons-material/Settings';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
-const menuItems = [
+const sidebarSections = [
   {
-    label: 'Academics',
-    icon: <SchoolIcon />,
-    subItems: [
-      { label: 'Courses', route: '/student/academics/courses' },
-      { label: 'Time Table', route: '/student/academics/timetable' },
-      { label: 'Results', route: '/student/academics/results' },
-      { label: 'Assignments', route: '/student/academics/assignments' },
-    ],
+    id: 'academics',
+    title: 'Academics',
+    icon: <School />,
+    items: [
+      { label: 'Courses', icon: <MenuBook />, path: 'courses' },
+      { label: 'Timetable', icon: <Schedule />, path: 'timetable' },
+      { label: 'Results', icon: <Grade />, path: 'results' },
+      { label: 'Assignments', icon: <Assignment />, path: 'assignments' },
+    ]
   },
   {
-    label: 'Resources',
-    icon: <ComputerIcon />,
-    subItems: [
-      { label: 'IT Lab', route: '/student/resources/it-lab' },
-      { label: 'Library', route: '/student/resources/library' },
-      { label: 'Canteen', route: '/student/resources/canteen' },
-      { label: 'Health Complex', route: '/student/resources/health-complex' },
-      { label: 'Sports Complex', route: '/student/resources/sports-complex' },
-    ],
+    id: 'resources',
+    title: 'Resources',
+    icon: <LocalLibrary />,
+    items: [
+      { label: 'Library', icon: <LocalLibrary />, path: 'library' },
+      { label: 'IT Lab', icon: <MenuBook />, path: 'it-lab' },
+      { label: 'Canteen', icon: <Restaurant />, path: 'canteen' },
+      { label: 'Health Complex', icon: <HealthAndSafety />, path: 'health-complex' },
+      { label: 'Sports Complex', icon: <SportsSoccer />, path: 'sports-complex' },
+    ]
   },
   {
-    label: 'Finances',
-    icon: <AttachMoneyIcon />,
-    subItems: [
-      { label: 'Personal Accounts', route: '/student/finances/personal-accounts' },
-      { label: 'Fees Payment', route: '/student/finances/fees-payment' },
-    ],
+    id: 'finances',
+    title: 'Finances',
+    icon: <AccountBalanceWallet />,
+    items: [
+      { label: 'Personal Accounts', icon: <AccountBalanceWallet />, path: 'accounts' },
+      { label: 'Fees Payment', icon: <AccountBalanceWallet />, path: 'fees' },
+    ]
   },
   {
-    label: 'Socials',
-    icon: <PeopleIcon />,
-    subItems: [
-      { label: 'Message', route: '/student/socials/message' },
-      { label: 'Market', route: '/student/socials/market' },
-      { label: 'Community', route: '/student/socials/community' },
-    ],
+    id: 'socials',
+    title: 'Socials',
+    icon: <People />,
+    items: [
+      { label: 'Message', icon: <Message />, path: 'messages' },
+      { label: 'Market', icon: <Store />, path: 'market' },
+      { label: 'Community', icon: <People />, path: 'community' },
+    ]
   },
   {
-    label: 'Settings',
-    icon: <SettingsIcon />,
-    subItems: [
-      { label: 'Theme Setting', route: '/student/settings/theme' },
-      { label: 'Font Setting', route: '/student/settings/font' },
-    ],
+    id: 'settings',
+    title: 'Settings',
+    icon: <Settings />,
+    items: [
+      { label: 'Theme Setting', icon: <ColorLens />, path: 'theme' },
+      { label: 'Font Setting', icon: <TextFields />, path: 'font' },
+    ]
   },
   {
-    label: 'Logout',
-    icon: <ExitToAppIcon />,
-    route: '/logout',
-  },
+    id: 'logout',
+    title: 'Logout',
+    icon: <Logout />,
+    items: [] // Logout handled as direct action
+  }
 ];
 
 const StudentSidebar = () => {
+  const [openSection, setOpenSection] = useState(null);
   const navigate = useNavigate();
-  const [openSections, setOpenSections] = React.useState({});
 
-  const handleToggle = (label) => {
-    setOpenSections((prev) => ({ ...prev, [label]: !prev[label] }));
+  const handleToggle = (id, hasItems) => {
+    if (hasItems) {
+      setOpenSection(prev => (prev === id ? null : id));
+    } else if (id === 'logout') {
+      console.log('Logging out...');
+      // Implement logout logic here
+    }
   };
 
-  const handleNavigation = (route) => {
-    navigate(route);
+  const handleItemClick = (path) => {
+    navigate(path);
   };
+
+  useEffect(() => {
+    setOpenSection(null);
+  }, []);
 
   return (
-    <Drawer variant="permanent" anchor="left">
+    <Drawer
+      variant="permanent"
+      anchor="left"
+      sx={{
+        width: 260,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+          width: 260,
+          boxSizing: 'border-box',
+          backgroundColor: '#0D1B2A',
+          color: '#FFFFFF',
+          borderRight: 'none',
+          overflowY: 'auto',
+        }
+      }}
+    >
+      <Box sx={{ p: 2 }}>
+        <Typography variant="h6" fontWeight="bold">Student Dashboard</Typography>
+      </Box>
+      <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.12)' }} />
       <List>
-        {menuItems.map((item) => (
-          <React.Fragment key={item.label}>
-            <ListItem button onClick={() => item.subItems ? handleToggle(item.label) : handleNavigation(item.route)}>
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.label} />
-              {item.subItems ? (
-                openSections[item.label] ? <ExpandLess /> : <ExpandMore />
-              ) : null}
-            </ListItem>
-            {item.subItems && (
-              <Collapse in={openSections[item.label]} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  {item.subItems.map((subItem) => (
-                    <ListItem 
-                      button 
-                      key={subItem.label} 
-                      sx={{ pl: 4 }} 
-                      onClick={() => handleNavigation(subItem.route)}>
-                      <ListItemText primary={subItem.label} />
-                    </ListItem>
-                  ))}
-                </List>
-              </Collapse>
-            )}
-          </React.Fragment>
-        ))}
+        {sidebarSections.map(({ id, title, icon, items }) => {
+          const isOpen = openSection === id;
+          const hasItems = items.length > 0;
+
+          return (
+            <Box key={id}>
+              <ListItemButton
+                onClick={() => handleToggle(id, hasItems)}
+                sx={{
+                  bgcolor: isOpen ? '#1B263B' : 'transparent',
+                  '&:hover': { bgcolor: '#1B263B' }
+                }}
+              >
+                <ListItemIcon sx={{ color: '#FFFFFF' }}>{icon}</ListItemIcon>
+                <ListItemText primary={<Typography fontWeight={500}>{title}</Typography>} />
+                {hasItems && (isOpen ? <ExpandLess /> : <ExpandMore />)}
+              </ListItemButton>
+
+              {hasItems && (
+                <Collapse in={isOpen} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+                    {items.map(({ label, icon, path }) => (
+                      <ListItemButton
+                        key={label}
+                        sx={{ pl: 4, '&:hover': { bgcolor: '#1E3A5F' } }}
+                        onClick={() => handleItemClick(path)}
+                      >
+                        <ListItemIcon sx={{ color: '#FFFFFF' }}>{icon}</ListItemIcon>
+                        <ListItemText
+                          primary={<Typography fontSize={14}>{label}</Typography>}
+                        />
+                      </ListItemButton>
+                    ))}
+                  </List>
+                </Collapse>
+              )}
+            </Box>
+          );
+        })}
       </List>
     </Drawer>
   );
