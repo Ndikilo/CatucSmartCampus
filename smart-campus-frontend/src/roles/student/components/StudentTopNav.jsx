@@ -9,7 +9,9 @@ import {
   IconButton,
   Avatar,
   Badge,
+  useTheme,
 } from '@mui/material';
+import { Brightness4, Brightness7 } from '@mui/icons-material';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import MailIcon from '@mui/icons-material/Mail';
@@ -53,7 +55,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-const StudentTopNav = () => {
+const StudentTopNav = ({ toggleColorMode }) => {
+  const theme = useTheme();
   return (
     <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Toolbar>
@@ -66,7 +69,10 @@ const StudentTopNav = () => {
           </SearchIconWrapper>
           <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
         </Search>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <IconButton onClick={toggleColorMode} color="inherit">
+            {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
+          </IconButton>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="error">
               <MailIcon />

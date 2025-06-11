@@ -115,20 +115,37 @@
 // StudentLayout.jsx
 
 import React from "react";
+import { Box } from "@mui/material";
 import StudentSidebar from "./StudentSidebar";
 import StudentTopNav from "./StudentTopNav";
 
-const StudentLayout = ({ children }) => {
+const StudentLayout = ({ children, toggleColorMode }) => {
   return (
-    <div className="flex h-screen overflow-hidden">
+    <Box sx={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
       <StudentSidebar />
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <StudentTopNav />
-        <main className="flex-1 overflow-y-auto p-4 bg-gray-50 dark:bg-gray-900">
+      <Box sx={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        flex: 1, 
+        overflow: 'hidden',
+        ml: { sm: '260px' }, // Match sidebar width
+        width: { sm: `calc(100% - 260px)` } // Adjust width to account for sidebar
+      }}>
+        <StudentTopNav toggleColorMode={toggleColorMode} />
+        <Box 
+          component="main" 
+          sx={{ 
+            flex: 1, 
+            overflowY: 'auto', 
+            p: 3, 
+            bgcolor: 'background.default',
+            mt: '64px' // Height of the top navigation
+          }}
+        >
           {children}
-        </main>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

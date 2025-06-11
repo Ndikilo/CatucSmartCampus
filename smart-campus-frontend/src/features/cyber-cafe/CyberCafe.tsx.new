@@ -1,0 +1,220 @@
+import React, { useState, useCallback } from 'react';
+import { Box, Typography, Button, Paper, Grid, Container } from '@mui/material';
+import { Computer } from '@mui/icons-material';
+import { useDevices } from './hooks/useDevices';
+import { useBookings } from './hooks/useBookings';
+import { DeviceCard } from './components/DeviceCard';
+import { BookingForm } from './components/BookingForm';
+import { ActiveSessions } from './components/ActiveSessions';
+import { RecentBookings } from './components/RecentBookings';
+import { SnackbarNotification } from './components/SnackbarNotification';
+import { WelcomeBanner } from './components/WelcomeBanner';
+import { DeviceType, SnackbarSeverity } from './types';
+import { SNACKBAR_SEVERITY } from './constants';
+
+const CyberCafe: React.FC = () => {
+  // State
+  const [selectedDeviceId, setSelectedDeviceId] = useState<number | ''>('');
+  const [userName, setUserName] = useState('');
+  const [duration, setDuration] = useState(1);
+  const [snackbar, setSnackbar] = useState<{
+    open: boolean;
+    message: string;
+    severity: SnackbarSeverity;
+  }>({
+    open: false,
+    message: '',
+    severity: 'success',
+  });
+
+  // Hooks
+  const {
+    devices,
+    deviceType,
+    setDeviceType,
+    bookDevice,
+    releaseDevice,
+    getDeviceById,
+    getAvailableDevices,
+  } = useDevices();
+
+  const {
+    createBooking,
+    endBooking,
+    isLoading: isBookingInProgress,
+    getActiveBookings,
+    getRecentBookings,
+  } = useBookings();
+
+  // Derived state
+  const availableDevices = getAvailableDevices(deviceType);
+  const activeBookings = getActiveBookings();
+  const recentBookings = getRecentBookings(5);
+  const filteredDevices = devices.filter((device) => device.type === deviceType);
+
+  // Handlers
+  const handleDeviceSelect = (deviceId: number) => {
+    setSelectedDeviceId(selectedDeviceId === deviceId ? '' : deviceId);
+  };
+
+  const handleBookDevice = useCallback(async () => {
+    if (selectedDeviceId === '' || !userName) return;
+
+    try {
+      const device = getDeviceById(selectedDeviceId);
+      if (!device || device.status !== 'available') {
+        throw new Error('Selected device is not available');
+      }
+
+      await createBooking(
+        selectedDeviceId,
+        device.name,
+        userName,
+        duration,
+        device.specs
+      );
+
+      bookDevice(selectedDeviceId);
+      showMessage(`Successfully booked ${device.name} for ${duration} hour(s)`, 'success');
+      
+      // Reset form
+      setSelectedDeviceId('');
+      setUserName('');
+      setDuration(1);
+    } catch (error) {
+      showMessage(
+        `Error: ${error instanceof Error ? error.message : 'An error occurred'}`,
+        'error' as SnackbarSeverity
+      );
+    }
+  }, [selectedDeviceId, userName, duration, createBooking, bookDevice, getDeviceById]);
+
+  const handleEndSession = useCallback(
+    (bookingId: number) => {
+      const booking = getActiveBookings().find((b) => b.id === bookingId);
+      if (!booking) return;
+
+      endBooking(bookingId);
+      releaseDevice(booking.computerId);
+      showMessage(`Session for ${booking.computerName} has been ended`, 'success');
+    },
+    [endBooking, releaseDevice, getActiveBookings]
+  );
+
+  const showMessage = (message: string, severity: SnackbarSeverity = 'success') => {
+    setSnackbar({ open: true, message, severity });
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbar((prev) => ({ ...prev, open: false }));
+  };
+
+  return (
+    <Container maxWidth="lg" sx={{ py: 4 }}>
+      <WelcomeBanner />
+      <Box sx={{ mt: 3 }}>
+        <Paper elevation={3} sx={{ p: 3, mb: 3 }}>
+          <Box display="flex" alignItems="center" mb={3}>
+            <Computer color="primary" sx={{ fontSize: 40, mr: 2 }} />
+            <Box>
+              <Typography variant="h4" component="h1" gutterBottom>
+                Cyber Café
+              </Typography>
+            </Box>
+          </Box>
+
+          <Grid container spacing={3}>
+            {/* Available Devices */}
+            <Grid item xs={12} md={8} component="div">
+              <Box display="flex" justifyContent="space-between" alignItems="center" mb={2}>
+                <Typography variant="h6">
+                  {deviceType === 'desktop' ? 'Desktops' : 'Laptops'} 
+                  ({availableDevices.length} of {filteredDevices.length} available)
+                </Typography>
+                <Box>
+                  <Button 
+                    variant={deviceType === 'desktop' ? 'contained' : 'outlined'}
+                    size="small" 
+                    onClick={() => setDeviceType('desktop' as DeviceType)}
+                    sx={{ 
+                      mr: 1, 
+                      textTransform: 'none',
+                      borderRadius: '20px',
+                      '&.MuiButton-contained': {
+                        boxShadow: 'none',
+                      },
+                      '&:hover': {
+                        boxShadow: 'none',
+                      }
+                    }}
+                  >
+                    Desktops
+                  </Button>
+                  <Button 
+                    variant={deviceType === 'laptop' ? 'contained' : 'outlined'}
+                    size="small" 
+                    onClick={() => setDeviceType('laptop' as DeviceType)}
+                    sx={{ 
+                      textTransform: 'none',
+                      borderRadius: '20px',
+                      '&.MuiButton-contained': {
+                        boxShadow: 'none',
+                      },
+                      '&:hover': {
+                        boxShadow: 'none',
+                      }
+                    }}
+                  >
+                    Laptops
+                  </Button>
+                </Box>
+              </Box>
+              <Grid container spacing={3} component="div">
+                {filteredDevices.map((device) => (
+                  <Grid item xs={12} sm={6} key={device.id} component="div">
+                    <DeviceCard
+                      device={device}
+                      onBook={handleDeviceSelect}
+                      isSelected={selectedDeviceId === device.id}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+
+            {/* Booking Section */}
+            <Grid item xs={12} md={4} component="div">
+              <BookingForm
+                selectedDeviceId={selectedDeviceId}
+                userName={userName}
+                duration={duration}
+                devices={filteredDevices}
+                onDeviceSelect={setSelectedDeviceId}
+                onUserNameChange={setUserName}
+                onDurationChange={setDuration}
+                onSubmit={handleBookDevice}
+                isSubmitting={isBookingInProgress}
+              />
+
+              <ActiveSessions
+                activeBookings={activeBookings}
+                onEndSession={handleEndSession}
+              />
+
+              <RecentBookings pastBookings={recentBookings} />
+            </Grid>
+          </Grid>
+        </Paper>
+
+        <SnackbarNotification
+          open={snackbar.open}
+          message={snackbar.message}
+          severity={snackbar.severity}
+          onClose={handleCloseSnackbar}
+        />
+      </Box>
+    </Container>
+  );
+};
+
+export default CyberCafe;

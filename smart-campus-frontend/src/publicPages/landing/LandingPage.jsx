@@ -1,4 +1,5 @@
 import React from 'react';
+import FeaturesSection from '../../shared/components/FeaturesSection';
 import {
   Box,
   Container,
@@ -80,6 +81,9 @@ const LandingPage = () => {
         </motion.div>
       </Box>
 
+      {/* Features Section */}
+      <FeaturesSection />
+      
       {/* Why Choose SmartCampus Carousel */}
       <Box sx={{ py: 10, backgroundColor: '#f4f6f8' }}>
         <Container>
@@ -105,58 +109,7 @@ const LandingPage = () => {
         </Container>
       </Box>
 
-      {/* Features Section */}
-      <Box sx={{ py: 10, background: '#fff' }}>
-        <Container>
-          <Typography variant="h4" textAlign="center" gutterBottom>
-            Key Features
-          </Typography>
-          <Grid container spacing={4} mt={2}>
-            {features.map((feature, idx) => (
-              <Grid item xs={12} sm={6} md={3} key={idx}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ delay: idx * 0.15, type: "spring", stiffness: 100 }}
-                >
-                  <Card
-                    sx={{
-                      height: 300,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                      p: 3,
-                      textAlign: 'center',
-                      transition: '0.3s',
-                      '&:hover': {
-                        boxShadow: 6,
-                        transform: 'scale(1.03)',
-                      },
-                    }}
-                  >
-                    <Box color="primary.main" mb={1}>
-                      {feature.icon}
-                    </Box>
-                    <Box flexGrow={1}>
-                      <Typography variant="h6" mt={1}>
-                        {feature.title}
-                      </Typography>
-                      <Typography variant="body2" mt={1}>
-                        {feature.description}
-                      </Typography>
-                    </Box>
-                    <Button size="small" sx={{ mt: 2 }}>
-                      Learn More
-                    </Button>
-                  </Card>
-                </motion.div>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </Box>
+
 
       {/* FAQ Section */}
       <Box sx={{ py: 10, backgroundColor: '#f0f2f5' }}>

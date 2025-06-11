@@ -1,0 +1,85 @@
+{
+  "jobs": [
+    {
+      "id": "1",
+      "title": "Frontend Developer",
+      "company": "TechCorp",
+      "location": "New York, NY",
+      "type": "Full-time",
+      "salary": "$80,000 - $100,000",
+      "posted": "2 days ago",
+      "description": "We are looking for a skilled Frontend Developer to join our team.",
+      "requirements": ["3+ years of React", "JavaScript/TypeScript", "Redux"],
+      "saved": true,
+      "applied": false,
+      "deadline": "2023-12-15"
+    },
+    {
+      "id": "2",
+      "title": "UX/UI Designer",
+      "company": "DesignHub",
+      "location": "Remote",
+      "type": "Contract",
+      "salary": "$50 - $70 per hour",
+      "posted": "1 week ago",
+      "description": "Create beautiful and intuitive user experiences.",
+      "requirements": ["Portfolio required", "3+ years UX/UI", "Figma/Sketch"],
+      "saved": false,
+      "applied": true,
+      "deadline": "2023-12-20"
+    }
+  ],
+  "resources": [
+    {
+      "id": "r1",
+      "title": "Resume Writing Guide",
+      "type": "guide",
+      "duration": "15 min read",
+      "description": "Learn how to craft the perfect resume.",
+      "saved": true,
+      "completed": true
+    },
+    {
+      "id": "r2",
+      "title": "Interview Preparation",
+      "type": "video",
+      "duration": "25 min",
+      "description": "Common interview questions and answers.",
+      "saved": true,
+      "completed": false
+    }
+  ],
+  "events": [
+    {
+      "id": "e1",
+      "title": "Tech Career Fair",
+      "date": "2023-11-15",
+      "time": "10:00 AM - 3:00 PM",
+      "location": "Campus Center",
+      "type": "career-fair",
+      "registered": true
+    },
+    {
+      "id": "e2",
+      "title": "Resume Workshop",
+      "date": "2023-11-20",
+      "time": "2:00 PM - 4:00 PM",
+      "location": "Library Room 203",
+      "type": "workshop",
+      "registered": false
+    }
+  ],
+  "advisors": [
+    {
+      "id": "a1",
+      "name": "Dr. Sarah Johnson",
+      "title": "Career Counselor",
+      "department": "Engineering & Technology",
+      "email": "s.johnson@university.edu",
+      "phone": "(555) 123-4567",
+      "availability": ["Mon 9am-12pm", "Wed 1pm-4pm"],
+      "expertise": ["Resume Review", "Interview Prep"],
+      "rating": 4.8
+    }
+  ]
+}
