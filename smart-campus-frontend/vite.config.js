@@ -1,3 +1,4 @@
+
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { fileURLToPath } from 'url';
@@ -28,9 +29,17 @@ export default defineConfig(({ mode }) => {
       },
     },
     define: {
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
-      'process.env.VITE_APP_TITLE': JSON.stringify(env.VITE_APP_TITLE || 'SmartCampus'),
-      'process.env.VITE_API_BASE_URL': JSON.stringify(env.VITE_API_BASE_URL || 'http://localhost:3000/api')
+      // Forward environment variables to the client
+      'import.meta.env.VITE_VERCEL_PROJECT_ID': JSON.stringify(env.VITE_VERCEL_PROJECT_ID || ''),
+      'import.meta.env.VITE_NEWS_API_KEY': JSON.stringify(env.VITE_NEWS_API_KEY || ''),
+      'import.meta.env.VITE_API_BASE_URL': JSON.stringify(env.VITE_API_BASE_URL || 'http://localhost:3000/api'),
+      'import.meta.env.VITE_APP_TITLE': JSON.stringify(env.VITE_APP_TITLE || 'SmartCampus'),
+      'import.meta.env.MODE': JSON.stringify(mode),
+      'process.env.NODE_ENV': JSON.stringify(mode),
+      'process.env.VITE_VERCEL_PROJECT_ID': JSON.stringify(env.VITE_VERCEL_PROJECT_ID || ''),
+      'process.env.VITE_NEWS_API_KEY': JSON.stringify(env.VITE_NEWS_API_KEY || ''),
+      'process.env.VITE_API_BASE_URL': JSON.stringify(env.VITE_API_BASE_URL || 'http://localhost:3000/api'),
+      'process.env.VITE_APP_TITLE': JSON.stringify(env.VITE_APP_TITLE || 'SmartCampus')
     },
     server: {
       fs: {
