@@ -81,7 +81,7 @@ const AnnouncementsSection = () => {
         
         <Grid container spacing={4}>
           {announcements.map((announcement, index) => (
-            <Grid item xs={12} md={4} key={index}>
+            <Grid item xs={12} md={4} key={index} display="grid">
               <AnnouncementCard>
                 <CardContent sx={{ flexGrow: 1, p: 3 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>

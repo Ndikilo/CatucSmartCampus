@@ -93,7 +93,7 @@ const Footer = () => {
     <FooterWrapper>
       <Container maxWidth="lg">
         <Grid container spacing={5}>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={3} display="grid">
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
               <SchoolIcon sx={{ fontSize: 40, color: 'primary.main', mr: 1 }} />
               <Typography variant="h6" component="div" sx={{ fontWeight: 700, color: 'white' }}>
@@ -112,7 +112,7 @@ const Footer = () => {
             </Box>
           </Grid>
           
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={3} display="grid">
             <FooterTitle variant="h6">Quick Links</FooterTitle>
             <FooterList>
               {quickLinks.map((link, index) => (
@@ -125,7 +125,7 @@ const Footer = () => {
             </FooterList>
           </Grid>
           
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={3} display="grid">
             <FooterTitle variant="h6">Resources</FooterTitle>
             <FooterList>
               {resources.map((resource, index) => (
@@ -138,7 +138,7 @@ const Footer = () => {
             </FooterList>
           </Grid>
           
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={3} display="grid">
             <FooterTitle variant="h6">Contact Us</FooterTitle>
             <FooterList>
               {contactInfo.map((info, index) => (

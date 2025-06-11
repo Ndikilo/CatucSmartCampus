@@ -71,7 +71,7 @@ const features = [
   {
     icon: <SchoolIcon />,
     title: 'Academic Management',
-    description: 'Streamline course management, attendance tracking, and academic progress monitoring in one unified platform.',
+    description: 'Streamline courses, attendance, and academic progress in one platform.',
     actionText: 'Learn More',
     path: '/academics',
     color: 'primary'
@@ -79,23 +79,23 @@ const features = [
   {
     icon: <LockIcon />,
     title: 'Secure Access',
-    description: 'Advanced authentication and role-based access control to protect sensitive information and resources.',
-    actionText: 'Security Features',
+    description: 'Advanced authentication and role-based access control for security.',
+    actionText: 'Security',
     path: '/security',
     color: 'secondary'
   },
   {
     icon: <BookIcon />,
     title: 'Digital Library',
-    description: 'Access thousands of books, journals, and research papers anytime, anywhere.',
-    actionText: 'Browse Library',
+    description: 'Access books, journals, and research papers anytime.',
+    actionText: 'Browse',
     path: '/library',
     color: 'success'
   },
   {
     icon: <ComputerIcon />,
     title: 'Cyber Café',
-    description: 'Book computer stations and access high-speed internet across campus.',
+    description: 'Book computer stations and access high-speed internet.',
     actionText: 'View Stations',
     path: '/cyber-cafe',
     color: 'info'
@@ -103,15 +103,15 @@ const features = [
   {
     icon: <MapIcon />,
     title: 'Campus Navigation',
-    description: 'Interactive maps and wayfinding tools to help you navigate the campus with ease.',
-    actionText: 'Explore Map',
+    description: 'Interactive maps for easy campus wayfinding.',
+    actionText: 'Explore',
     path: '/map',
     color: 'warning'
   },
   {
     icon: <EventIcon />,
     title: 'Events & Activities',
-    description: 'Stay updated with upcoming campus events, workshops, and student activities.',
+    description: 'Stay updated with campus events and workshops.',
     actionText: 'View Events',
     path: '/events',
     color: 'error'
@@ -119,16 +119,16 @@ const features = [
   {
     icon: <AssessmentIcon />,
     title: 'Performance Analytics',
-    description: 'Track academic performance and get personalized insights for improvement.',
-    actionText: 'View Analytics',
+    description: 'Track and improve academic performance.',
+    actionText: 'Analytics',
     path: '/analytics',
     color: 'primary'
   },
   {
     icon: <NotificationsIcon />,
     title: 'Smart Notifications',
-    description: 'Stay informed with real-time alerts and important campus announcements.',
-    actionText: 'Notification Settings',
+    description: 'Real-time alerts and announcements.',
+    actionText: 'Alerts',
     path: '/notifications',
     color: 'secondary'
   }
@@ -148,16 +148,11 @@ const FeaturesSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <SectionTitle variant="h3" component="h2" sx={{ mb: 6 }}>
-            Comprehensive Campus Solutions
-            <Typography variant="subtitle1" color="text.secondary" sx={{ mt: 2, fontWeight: 400 }}>
-              Everything you need for a seamless academic experience in one powerful platform
-            </Typography>
-          </SectionTitle>
+          {/* Section title removed as per request */}
           
-          <Grid container spacing={4}>
+          <Grid container spacing={3}>
             {features.map((feature, index) => (
-              <Grid item xs={12} sm={6} lg={3} key={index}>
+              <Grid item xs={12} sm={6} key={index} display="grid">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}

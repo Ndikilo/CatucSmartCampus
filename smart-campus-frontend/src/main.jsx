@@ -30,14 +30,11 @@ const router = createBrowserRouter(
   {
     future: {
       v7_startTransition: true,
-      v7_relativeSplatPath: true,
     },
   }
 );
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
-root.render(
+const root = ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ErrorBoundary FallbackComponent={ErrorFallback}>
       <RouterProvider 

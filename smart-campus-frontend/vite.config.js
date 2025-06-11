@@ -15,7 +15,14 @@ export default defineConfig({
     },
   },
   define: {
-    'process.env': process.env
+    // Only include the environment variables that are needed in the client-side code
+    'process.env': {
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development'),
+      VITE_APP_TITLE: JSON.stringify(process.env.VITE_APP_TITLE || 'SmartCampus'),
+      VITE_API_BASE_URL: JSON.stringify(process.env.VITE_API_BASE_URL || 'http://localhost:3000/api')
+      // Add other environment variables that are needed in the client-side code
+      // Always prefix them with VITE_ to make them available in the client
+    }
   },
   server: {
     fs: {

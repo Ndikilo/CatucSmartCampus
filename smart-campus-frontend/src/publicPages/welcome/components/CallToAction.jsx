@@ -129,7 +129,7 @@ const CallToAction = () => {
         </Box>
         
         <Grid container spacing={4} sx={{ mt: 8 }}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} display="grid">
             <FeatureItem>
               <SchoolIcon sx={{ fontSize: 48, mb: 2, color: 'white' }} />
               <Typography variant="h5" component="h3" gutterBottom>
@@ -149,7 +149,7 @@ const CallToAction = () => {
             </FeatureItem>
           </Grid>
           
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} display="grid">
             <FeatureItem>
               <SchoolIcon sx={{ fontSize: 48, mb: 2, color: 'white' }} />
               <Typography variant="h5" component="h3" gutterBottom>
@@ -169,7 +169,7 @@ const CallToAction = () => {
             </FeatureItem>
           </Grid>
           
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} display="grid">
             <FeatureItem>
               <SchoolIcon sx={{ fontSize: 48, mb: 2, color: 'white' }} />
               <Typography variant="h5" component="h3" gutterBottom>

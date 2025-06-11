@@ -36,17 +36,6 @@ const reasons = [
   { icon: <StorageIcon fontSize="large" />, label: 'Reliable Cloud Storage' },
 ];
 
-const features = [
-  { title: 'Real-time Grade Updates', icon: <AssessmentIcon fontSize="large" />, description: 'Students receive instant updates on their grades and feedback.' },
-  { title: 'Smart Attendance', icon: <GroupIcon fontSize="large" />, description: 'Track attendance seamlessly across all classes.' },
-  { title: 'Digital Library Access', icon: <SchoolIcon fontSize="large" />, description: 'Browse thousands of academic resources on demand.' },
-  { title: 'Secure Logins', icon: <LockIcon fontSize="large" />, description: 'Advanced authentication and role-based access.' },
-  { title: 'Event Scheduling', icon: <QueryBuilderIcon fontSize="large" />, description: 'Keep track of all campus events and deadlines.' },
-  { title: 'Push Notifications', icon: <NotificationsIcon fontSize="large" />, description: 'Stay informed with smart in-app alerts.' },
-  { title: 'Cloud Storage', icon: <StorageIcon fontSize="large" />, description: 'Store, retrieve, and manage your files from anywhere.' },
-  { title: 'Responsive UI', icon: <DevicesIcon fontSize="large" />, description: 'Works perfectly across phones, tablets, and desktops.' },
-];
-
 const faqs = [
   { question: 'What is SmartCampus?', answer: 'SmartCampus is an all-in-one digital platform that streamlines campus operations for students, staff, and administrators.' },
   { question: 'Is my data secure?', answer: 'Yes, we use industry-standard encryption and authentication methods to protect your data.' },
@@ -81,9 +70,6 @@ const LandingPage = () => {
         </motion.div>
       </Box>
 
-      {/* Features Section */}
-      <FeaturesSection />
-      
       {/* Why Choose SmartCampus Carousel */}
       <Box sx={{ py: 10, backgroundColor: '#f4f6f8' }}>
         <Container>
@@ -108,9 +94,10 @@ const LandingPage = () => {
           </Carousel>
         </Container>
       </Box>
-
-
-
+      
+      {/* Features Section */}
+      <FeaturesSection />
+      
       {/* FAQ Section */}
       <Box sx={{ py: 10, backgroundColor: '#f0f2f5' }}>
         <Container>
