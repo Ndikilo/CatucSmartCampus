@@ -7,6 +7,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import theme from './common/theme/theme.js';
 import { AuthProvider } from './common/context/AuthContext';
 import ErrorFallback from './common/components/ErrorFallback';
+import { Analytics } from '@vercel/analytics/react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -45,6 +46,7 @@ const root = ReactDOM.createRoot(document.getElementById('root')).render(
           </div>
         }
       />
+      <Analytics />
     </ErrorBoundary>
   </React.StrictMode>
 );
