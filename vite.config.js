@@ -10,6 +10,25 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
   
   return {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@import "@/styles/variables";`
+        }
+      }
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            leaflet: ['leaflet', 'react-leaflet']
+          }
+        }
+      },
+      commonjsOptions: {
+        transformMixedEsModules: true
+      }
+    },
     base: mode === 'production' ? '/SmartCampus/' : '/',
     plugins: [
       react({

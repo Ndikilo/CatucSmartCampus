@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://ndikilo.github.io/SmartCampus",
+  "homepage": "/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -23,11 +23,13 @@
     "axios": "^1.9.0",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.16.0",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.511.0",
     "notistack": "^3.0.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-error-boundary": "^6.0.0",
+    "react-leaflet": "^5.0.0",
     "react-loading-skeleton": "^3.5.0",
     "react-multi-carousel": "^2.8.6",
     "react-router-dom": "^6.30.1",
@@ -35,6 +37,9 @@
     "react-swipeable": "^7.0.2",
     "recharts": "^2.15.3",
     "slick-carousel": "^1.8.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

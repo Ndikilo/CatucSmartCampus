@@ -1,8 +1,9 @@
-import React from 'react';
-import { Box, Typography, Container, Grid, Card, CardContent, CardActions, Button, useTheme, useMediaQuery } from '@mui/material';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { styled } from '@mui/material/styles';
+import React from "react";
+import { Box, Typography, Container, Card, CardContent, CardActions, Button, useTheme, useMediaQuery } from "@mui/material";
+import { Grid } from "@mui/material";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { styled } from "@mui/material/styles";
 import { 
   Book as BookIcon, 
   Computer as ComputerIcon, 
@@ -12,9 +13,9 @@ import {
   Lock as LockIcon,
   Assessment as AssessmentIcon,
   Notifications as NotificationsIcon 
-} from '@mui/icons-material';
+} from "@mui/icons-material";
 
-const Section = styled('section')(({ theme }) => ({
+const Section = styled("section")(({ theme }) => ({
   padding: theme.spacing(10, 0),
   [theme.breakpoints.down('md')]: {
     padding: theme.spacing(6, 0),
@@ -152,7 +153,7 @@ const FeaturesSection = () => {
           
           <Grid container spacing={3}>
             {features.map((feature, index) => (
-              <Grid item xs={12} sm={6} key={index} display="grid">
+              <Grid key={index} xs={12} sm={6} display="grid">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}

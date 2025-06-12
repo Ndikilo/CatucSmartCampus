@@ -1,0 +1,68 @@
+[
+  {
+    "id": "catuc",
+    "name": "Catholic University of Cameroon (CATUC)",
+    "abbreviation": "CATUC",
+    "type": "Private",
+    "location": "Bamenda, Cameroon",
+    "lat": 6.0473,
+    "lng": 10.2710,
+    "programs": ["Computer Science", "Law", "Philosophy", "Theology"],
+    "website": "https://www.catuc.org"
+  },
+  {
+    "id": "uba",
+    "name": "University of Bamenda (UBa)",
+    "abbreviation": "UBa",
+    "type": "Public",
+    "location": "Bambili, Cameroon",
+    "lat": 6.0667,
+    "lng": 10.2667,
+    "programs": ["Engineering", "Science", "Education", "Health Sciences"],
+    "website": "https://www.uniba.cm"
+  },
+  {
+    "id": "npuib",
+    "name": "National Polytechnic University Institute of Bamenda (NPUIB)",
+    "abbreviation": "NPUIB",
+    "type": "Public",
+    "location": "Bambili, Cameroon",
+    "lat": 6.0567,
+    "lng": 10.2767,
+    "programs": ["Engineering", "Technology", "Applied Sciences"],
+    "website": "https://npuib.cm"
+  },
+  {
+    "id": "smu",
+    "name": "St. Monica University (SMU)",
+    "abbreviation": "SMU",
+    "type": "Private",
+    "location": "Mankon, Bamenda",
+    "lat": 6.0373,
+    "lng": 10.1810,
+    "programs": ["Business", "IT", "Theology", "Education"],
+    "website": "https://www.smuedu.org"
+  },
+  {
+    "id": "ict",
+    "name": "ICT University (ICTU)",
+    "abbreviation": "ICTU",
+    "type": "Private",
+    "location": "Mile 18, Buea",
+    "lat": 4.2000,
+    "lng": 9.3000,
+    "programs": ["Computer Science", "IT", "Business Technology"],
+    "website": "https://www.ictuniversity.edu.cm"
+  },
+  {
+    "id": "guest",
+    "name": "Continue as Guest",
+    "abbreviation": "",
+    "type": "Guest Access",
+    "location": "Limited Access",
+    "lat": 6.0667,
+    "lng": 10.2667,
+    "programs": ["Basic Features Only"],
+    "isGuest": true
+  }
+]

@@ -6,17 +6,17 @@ import { AuthProvider } from './common/context/AuthContext';
 import ErrorBoundary from './common/components/ErrorBoundary';
 
 // Lazy-loaded public pages
-const LandingPage = lazy(() => import('./publicPages/landing/LandingPage'));
+const LandingPage = lazy(() => import('./publicPages/landing/LandingPage.jsx'));
 const Welcome = lazy(() => import('./publicPages/welcome/Welcome.jsx'));
-const AuthPage = lazy(() => import('./publicPages/auth/AuthPage'));
-const SignupPage = lazy(() => import('./publicPages/auth/SignupPage'));
-const RoleRedirect = lazy(() => import('./RoleRedirect'));
+const AuthPage = lazy(() => import('./publicPages/auth/AuthPage.jsx'));
+const SignupPage = lazy(() => import('./publicPages/auth/SignupPage.jsx'));
+const RoleRedirect = lazy(() => import('./RoleRedirect.jsx'));
 
 // Lazy-loaded route wrappers
-const PublicRoutes = lazy(() => import('./publicPages/PublicRoutes'));
-const StudentRoutes = lazy(() => import('./roles/student/StudentRoutes'));
-const StaffRoutes = lazy(() => import('./roles/staff/StaffRoutes'));
-const AdminRoutes = lazy(() => import('./roles/admin/AdminRoutes'));
+const PublicRoutes = lazy(() => import('./publicPages/PublicRoutes.jsx'));
+const StudentRoutes = lazy(() => import('./roles/student/StudentRoutes.jsx'));
+const StaffRoutes = lazy(() => import('./roles/staff/StaffRoutes.jsx'));
+const AdminRoutes = lazy(() => import('./roles/admin/AdminRoutes.jsx'));
 
 const Loader = () => (
   <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>

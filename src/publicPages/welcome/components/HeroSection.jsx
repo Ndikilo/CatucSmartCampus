@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, Container, Grid, useTheme, useMediaQuery } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { styled, keyframes } from '@mui/material/styles';
@@ -81,6 +81,24 @@ const HeroSection = () => {
   const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [institution, setInstitution] = useState('');
+
+  useEffect(() => {
+    // Get institution from location state or default to empty string
+    const state = window.history.state?.usr?.state;
+    if (state?.institution) {
+      // Map of institution IDs to their abbreviations
+      const institutionAbbreviations = {
+        'catuc': 'CATUC',
+        'uba': 'UBa',
+        'npuib': 'NPUIB',
+        'smu': 'SMU',
+        'ict': 'ICTU',
+        'guest': ''
+      };
+      setInstitution(institutionAbbreviations[state.institution] || '');
+    }
+  }, []);
 
   return (
     <HeroSectionWrapper>
@@ -88,12 +106,14 @@ const HeroSection = () => {
         <HeroContent>
           <AnimateFadeIn>
             <HeroTitle variant="h1" component="h1">
-              Welcome to SmartCampus
+              {institution ? `Welcome to ${institution} SmartCampus` : 'Welcome to SmartCampus'}
             </HeroTitle>
             
             <HeroSubtitle variant="h5" component="h2">
               Your Gateway to a Seamless University Experience
             </HeroSubtitle>
+
+
 
             <Box sx={{ 
               display: 'flex', 
